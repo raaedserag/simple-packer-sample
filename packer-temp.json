@@ -1,17 +1,18 @@
 {
     "variables": {
-        "aws_profile_name": "cet7",
-        "ami_name": "cet007-packer-ami"
+        "aws_access_key": "{{env `PACKER_AWS_KEYID`}}",
+        "aws_secret_key": "{{env `PACKER_AWS_SECRET`}}"
     },
     "builders": [
       {
         "type": "amazon-ebs",
         "region": "us-east-1",
-        "profile": "{{user `aws_profile_name`}}",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
         "source_ami": "ami-0c2b8ca1dad447f8a",
         "instance_type": "t2.micro",
         "ssh_username": "ec2-user",
-        "ami_name": "{{user `ami_name`}}"
+        "ami_name": "cet007-packer-ami"
       }
     ],
     
